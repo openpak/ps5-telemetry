@@ -1,0 +1,21 @@
+[Unit]
+Description=OpenPak PlayStation 5 telemetry sink (ps5-telemetry)
+
+[Container]
+ContainerName=openpak-ps5-telemetry
+Image=ghcr.io/openpak/ps5-telemetry:latest
+AutoUpdate=registry
+Network=openpak.network
+# IP= is assigned with pin-ips.sh --apply when this is first deployed.
+# Traefik routes the telemetry Host names (telemetry-console.api.playstation.com,
+# smetrics.aem.playstation.com, feature.api.playstation.com) to :8080.
+Environment=PS5_ADDR=:8080
+# Research dump (off by default): uncomment both lines.
+# Environment=PS5_TELEMETRY_DUMP_DIR=/dump
+# Volume=/var/lib/openpak/ps5-telemetry-dump:/dump:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

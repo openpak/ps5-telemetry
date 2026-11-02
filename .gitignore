@@ -1,0 +1,6 @@
+.env
+/ps5-telemetry
+/dist
+*.log
+next-session.md
+NEXT-SESSION.md
